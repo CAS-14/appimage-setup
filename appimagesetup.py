@@ -1,23 +1,23 @@
 import sys
 import os
 
-if len(sys.argv != 2):
+if len(sys.argv) != 2:
     print("You must provide one argument.")
-    exit()
+    sys.exit()
 
 program_path = sys.argv[1]
 program_name = program_path.split("/")[-1]
 
 if program_name.split(".")[-1].lower() != "appimage":
     print("You must provide an AppImage file.")
-    exit()
+    sys.exit()
 
 if not os.path.exists(program_path):
     print(f"{program_path}: File not found!")
-    exit()
+    sys.exit()
 
 home = os.path.expanduser("~")
-if not os.exists(os.path.join(home, "Applications")):
+if not os.path.exists(os.path.join(home, "Applications")):
     os.mkdir(os.path.join(home, "Applications"))
 
 os.rename(program_path, os.path.join(home, "Applications", program_name))
